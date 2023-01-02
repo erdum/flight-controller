@@ -45,9 +45,9 @@ struct Instruments {
 Controls controls;
 
 controls.throttle = 0;
-controls.rudder = 0;
-controls.elevator = 0;
-controls.ailerons = 0;
+controls.rudderTrim = 0;
+controls.elevatorTrim = 0;
+controls.aileronsTrim = 0;
 controls.flaps = 0;
 controls.leftLatch = false;
 controls.rightLatch = false;
@@ -80,6 +80,9 @@ void setup() {
 }
 
 void loop() {
+    controls.rudder = controls.rudderTrim;
+    controls.elevator = controls.elevatorTrim;
+    controls.ailerons = controls.aileronsTrim;
 
     while(radio.available()) {
         radio.read(&controls, sizeof(controls));
